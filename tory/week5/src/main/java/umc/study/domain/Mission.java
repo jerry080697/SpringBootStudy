@@ -3,6 +3,8 @@ package umc.study.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import umc.study.domain.enums.MissionStatus;
 
 import java.time.LocalDateTime;
@@ -44,8 +46,13 @@ public class Mission {
     @Column(nullable = false,length = 10)
     private String restaurantCategory;
 
-    //@Column(nullable = false)
-    //private Integer userId;
+    @CreatedDate
+    @Column(nullable = false)
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(nullable = false)
+    private LocalDateTime updatedAt;
 
     @Column(nullable = false)
     private Integer storeId;

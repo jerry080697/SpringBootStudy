@@ -9,7 +9,6 @@ import umc.study.domain.enums.UserStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,8 +33,6 @@ public class User {
     @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private UserStatus userStatus;
 
-    @Column(nullable = false)
-    private Date birthday;
 
     @Column(nullable = false,length=30)
     private String address;
@@ -51,12 +48,6 @@ public class User {
     @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "login_id")
-    private Login login;
-
-    //@Enumerated(EnumType.STRING)
-    //private SocialType loginType;
 
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
     private List<Review> reviewList=new ArrayList<>();

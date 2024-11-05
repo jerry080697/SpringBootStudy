@@ -1,5 +1,6 @@
 package umc.study.domain.enums;
 
-public enum SocialType {
+public enum
+SocialType {
     KAKAO,GOOGLE,NAVER,APPLE
 }

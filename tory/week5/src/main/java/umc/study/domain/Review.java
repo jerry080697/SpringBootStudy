@@ -35,9 +35,6 @@ public class Review {
     @Column(nullable = false,length = 20)
     private String userName;
 
-    @Column(length = 100)
-    private String imgUrl;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
@@ -51,3 +48,8 @@ public class Review {
     private Store store;
 
 }
+
+
+
+
+

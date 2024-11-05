@@ -38,6 +38,8 @@ public class Store {
     @Column(nullable = false)
     private Double starRate;
 
+    @Column(nullable = false,length = 254)
+    private String address;
     @CreatedDate
     @Column(nullable = false)
     private LocalDateTime createdAt;
@@ -52,4 +54,18 @@ public class Store {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "mission_id")
     private Mission mission;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="region_id")
+    private Region region;
+    @Override
+    public String toString() {
+        return "Store{" +
+                "id=" + storeId +
+                ", name='" + storeName + '\'' +
+                ", address='" + address + '\'' +
+                ", score=" + starRate +
+                ", region=" + (region != null ? region.getName() : "N/A") + // region의 이름 출력
+                '}';
+    }
 }
