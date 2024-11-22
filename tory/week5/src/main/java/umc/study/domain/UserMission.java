@@ -2,25 +2,31 @@ package umc.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import umc.study.domain.enums.MissionStatus;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-public class UserPrefer {
+public class UserMission{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer userPreferId;
+    private Integer userMissionId;
+
+
+    private Long verificationCode;
+
+    @Enumerated(EnumType.STRING)
+    private MissionStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "food_id")
-    private Food food;
-
+    @JoinColumn(name = "mission_id")
+    private Mission mission;
 }

@@ -8,4 +8,5 @@ import umc.study.web.dto.UserRequestDTO;
 public interface UserCommandService {
 
     User joinUser(UserRequestDTO.JoinDto request);
+
 }

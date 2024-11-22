@@ -2,6 +2,8 @@ package umc.study.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import umc.study.domain.enums.Gender;
@@ -13,20 +15,20 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
+@DynamicInsert
+@DynamicUpdate
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Integer userId;
 
-    @Column(nullable = false,length=10)
     private String name;
 
-    @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
@@ -34,24 +36,27 @@ public class User {
     private UserStatus userStatus;
 
 
-    @Column(nullable = false,length=30)
+
     private String address;
 
-    @Column(nullable = false,length=30)
+
     private String preferFoodCategory;
 
     @CreatedDate
-    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
 
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
     private List<Review> reviewList=new ArrayList<>();
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
+    private List<UserMission> userMissionList=new ArrayList<>();
 
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
     private List<Mission> missionList=new ArrayList<>();
+
+    @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
+    private List<UserPrefer> userPreferList=new ArrayList<>();
 }

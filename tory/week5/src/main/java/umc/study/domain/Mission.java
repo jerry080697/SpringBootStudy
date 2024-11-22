@@ -13,6 +13,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
@@ -20,41 +21,30 @@ public class Mission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(nullable = false)
     private Integer missionId;
 
     @Enumerated(EnumType.STRING)
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
     private MissionStatus status;
 
-    @Column(nullable = false,length = 254)
     private String missionDescription;
 
     @UpdateTimestamp
-    @Column(nullable = false)
     private LocalDateTime completeTime;
 
-    @Column(nullable = false)
     private Integer earnablePoint;
 
-    @Column(nullable = false,length = 20)
     private String missionTitle;
 
-    @Column(nullable = false)
     private Integer missionDueDate;
 
-    @Column(nullable = false,length = 10)
     private String restaurantCategory;
 
     @CreatedDate
-    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     @LastModifiedDate
-    @Column(nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(nullable = false)
     private Integer storeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -63,4 +53,6 @@ public class Mission {
 
     @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
     private List<Store> storeList = new ArrayList<>();
+    @OneToMany(mappedBy = "mission", cascade = CascadeType.ALL)
+    private List<UserMission> userMissionList = new ArrayList<>();
 }

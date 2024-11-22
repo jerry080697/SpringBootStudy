@@ -34,7 +34,7 @@ public class UserConverter {
                 //.specAddress(request.getSpecAddress())
                 .gender(gender)
                 .name(request.getName())
-                .preferFoodCategory(request.getPreferCategory())
+                .preferFoodCategory(request.getPreferCategory().toString())
                 .build();
     }
 }
