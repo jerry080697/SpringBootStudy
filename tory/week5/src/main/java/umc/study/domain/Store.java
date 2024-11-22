@@ -19,7 +19,7 @@ public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer storeId;
+    private Long storeId;  // storeId를 Long으로 변경
 
     private String storeName;
 
@@ -57,6 +57,7 @@ public class Store {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="region_id")
     private Region region;
+
     @Override
     public String toString() {
         return "Store{" +

@@ -1,4 +1,4 @@
-package umc.study.validation;
+package umc.study.validation.annotation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

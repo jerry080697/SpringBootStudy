@@ -14,7 +14,8 @@ public class StoreResponseDTO {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class JoinStoreResultDTO{
-        Integer storeId;
+        // storeId 타입을 Long으로 수정
+        Long storeId;
         LocalDateTime createdAt;
     }
 }
