@@ -10,4 +10,6 @@ import umc.study.domain.User;
 public interface ReviewRepository extends JpaRepository<Review, Integer> {
     Page<Review> findAllByStore(Store store, PageRequest pageRequest);
     Page<Review> findAllByUser(User user, PageRequest pageRequest);
+
+
 }

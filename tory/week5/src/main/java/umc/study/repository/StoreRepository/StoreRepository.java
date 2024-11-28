@@ -5,5 +5,4 @@ import umc.study.domain.Store;
 
 public interface StoreRepository extends JpaRepository<Store, Long> {
 
-    //List<Store> dynamicQueryWithBooleanBuilder(String name, Float score);
 }

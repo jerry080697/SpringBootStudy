@@ -9,14 +9,18 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import umc.study.apiPayload.ApiResponse;
 import umc.study.converter.StoreConverter;
+import umc.study.domain.Review;
 import umc.study.domain.Store;
 import umc.study.service.StoreService.StoreCommandService;
 import umc.study.service.StoreService.StoreQueryService;
 import umc.study.web.dto.StoreRequestDTO;
 import umc.study.web.dto.StoreResponseDTO;
+
+import static umc.study.domain.QStore.store;
 
 @Slf4j
 @RestController
@@ -25,16 +29,15 @@ import umc.study.web.dto.StoreResponseDTO;
 public class StoreRestController {
 
     private final StoreCommandService storeCommandService;
+    private final StoreQueryService storeQueryService;
+
 
     @PostMapping("/")
     public ApiResponse<StoreResponseDTO.JoinStoreResultDTO> join(@RequestBody @Valid StoreRequestDTO.JoinStoreDto request){
-
-
-
         Store store = storeCommandService.joinStore(request);
         return ApiResponse.onSuccess(StoreConverter.toJoinStoreResultDTO(store));
     }
-    private final StoreQueryService storeQueryService;
+
 
     @GetMapping("/{storeId}/reviews")
     @Operation(summary = "특정 가게의 리뷰 목록 조회 API",description = "특정 가게의 리뷰들의 목록을 조회하는 API이며, 페이징을 포함합니다. query String 으로 page 번호를 주세요")
@@ -48,7 +51,10 @@ public class StoreRestController {
             @Parameter(name = "storeId", description = "가게의 아이디, path variable 입니다!")
     })
     public ApiResponse<StoreResponseDTO.ReviewPreViewListDTO> getReviewList( @PathVariable(name = "storeId") Long storeId, @RequestParam(name = "page") Integer page){
-        storeQueryService.getReviewList(storeId,page);
-        return null;
+
+        Page<Review> reviewPage = storeQueryService.getReviewList(storeId, page);
+        StoreResponseDTO.ReviewPreViewListDTO reviewListDTO =StoreConverter.reviewPreViewListDTO(reviewPage);
+
+        return ApiResponse.onSuccess(reviewListDTO);
     }
 }

@@ -19,9 +19,11 @@ public class MissionRestController {
 
     private final MissionCommandService missionCommandService;
 
+
     @PostMapping("/")
     public ApiResponse<MissionResponseDTO.JoinMissionResultDTO> join(@RequestBody MissionRequestDTO.JoinMissionDto request){
         Mission mission = missionCommandService.joinMission(request);
         return ApiResponse.onSuccess(MissionConverter.toJoinMissionResultDTO(mission));
     }
+
 }

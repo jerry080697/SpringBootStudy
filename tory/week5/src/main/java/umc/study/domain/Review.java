@@ -45,4 +45,13 @@ public class Review {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    public void setUser(User user) {
+        this.user = user;
+        user.getReviewList().add(this);
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+        store.getReviewList().add(this);
+    }
 }

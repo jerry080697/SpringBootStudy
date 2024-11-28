@@ -1,6 +1,8 @@
 package umc.study.converter;
 
 import umc.study.domain.Review;
+import umc.study.domain.Store;
+import umc.study.domain.User;
 import umc.study.web.dto.ReviewRequestDTO;
 import umc.study.web.dto.ReviewResponseDTO;
 
@@ -15,11 +17,13 @@ public class ReviewConverter {
                 .build();
     }
 
-    public static Review toReview(ReviewRequestDTO.JoinReviewDto request){
+    public static Review toReview(ReviewRequestDTO.JoinReviewDto request, User user, Store store){
         return Review.builder()
                 .userName(request.getUserName())
                 .content(request.getContent())
                 .starRate(request.getStarRate())
+                .user(user)
+                .store(store)
                 .build();
     }
 }
