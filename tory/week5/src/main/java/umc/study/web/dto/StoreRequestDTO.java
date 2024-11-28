@@ -3,7 +3,6 @@ package umc.study.web.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
-import umc.study.validation.annotation.StoreExist;  // StoreExist 어노테이션 import
 
 public class StoreRequestDTO {
 
@@ -24,7 +23,7 @@ public class StoreRequestDTO {
         @NotNull
         Integer earnablePoint;
 
-        @StoreExist  // StoreExist 어노테이션 추가
+        //@StoreExist  // StoreExist 어노테이션 추가
         Integer storeId;  // 이 필드에 @StoreExist 추가
     }
 }

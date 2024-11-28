@@ -4,9 +4,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
-import umc.study.validation.annotation.ExistCategories;
-
-import java.util.List;
 
 public class UserRequestDTO {
 
@@ -25,7 +22,8 @@ public class UserRequestDTO {
         @Size(min = 5, max = 12)
         String address;
 
-        @ExistCategories
-        List<Long> preferCategory;
+        //@ExistCategories
+//        List<Long> preferCategory;
+        String preferCategory;
     }
 }

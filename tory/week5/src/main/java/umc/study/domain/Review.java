@@ -7,8 +7,8 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
+@Entity
 @Setter
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -40,9 +40,6 @@ public class Review {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
-
-    //@Column(nullable = false)
-    //private Integer storeId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")

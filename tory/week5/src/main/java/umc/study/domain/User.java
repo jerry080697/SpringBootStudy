@@ -7,7 +7,6 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import umc.study.domain.enums.Gender;
-import umc.study.domain.enums.UserStatus;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -32,8 +31,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(columnDefinition = "VARCHAR(15) DEFAULT 'ACTIVE'")
-    private UserStatus userStatus;
+//    @Column(columnDefinition = "DEFAULT 'ACTIVE'")
+//    private UserStatus userStatus;
 
 
 

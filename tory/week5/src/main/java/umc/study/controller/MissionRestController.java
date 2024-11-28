@@ -1,6 +1,5 @@
 package umc.study.controller;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,7 +20,7 @@ public class MissionRestController {
     private final MissionCommandService missionCommandService;
 
     @PostMapping("/")
-    public ApiResponse<MissionResponseDTO.JoinMissionResultDTO> join(@RequestBody @Valid MissionRequestDTO.JoinMissionDto request){
+    public ApiResponse<MissionResponseDTO.JoinMissionResultDTO> join(@RequestBody MissionRequestDTO.JoinMissionDto request){
         Mission mission = missionCommandService.joinMission(request);
         return ApiResponse.onSuccess(MissionConverter.toJoinMissionResultDTO(mission));
     }

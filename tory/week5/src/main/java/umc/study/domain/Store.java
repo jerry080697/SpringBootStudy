@@ -13,13 +13,13 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor()
 @AllArgsConstructor
 public class Store {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long storeId;  // storeId를 Long으로 변경
+    private Integer storeId;
 
     private String storeName;
 

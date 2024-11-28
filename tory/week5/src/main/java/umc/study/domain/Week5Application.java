@@ -32,8 +32,6 @@ public class Week5Application {
 			System.out.println("Name: " + name);
 			System.out.println("Score: " + score);
 
-			storeService.findStoresByNameAndScore(name, score)
-					.forEach(System.out::println);
 		};
 	}
 }

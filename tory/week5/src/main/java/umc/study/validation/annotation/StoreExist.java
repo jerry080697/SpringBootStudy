@@ -2,7 +2,6 @@ package umc.study.validation.annotation;
 
 
 import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
 import umc.study.validation.validator.StoreExistValidator;
 
 import java.lang.annotation.ElementType;
@@ -14,10 +13,10 @@ import java.lang.annotation.Target;
 @Target({ElementType.FIELD, ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StoreExist {
-    String message() default "Store does not exist.";
-
-    Class<?>[] groups() default {};
-
-    Class<? extends Payload>[] payload() default {};
+//    String message() default "가게가 존재하지 않습니다";
+//
+//    Class<?>[] groups() default {};
+//
+//    Class<? extends Payload>[] payload() default {};
 }
 

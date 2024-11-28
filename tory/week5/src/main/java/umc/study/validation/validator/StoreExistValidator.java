@@ -13,7 +13,7 @@ public class StoreExistValidator implements ConstraintValidator<StoreExist, Inte
 
     @Override
     public boolean isValid(Integer storeId, ConstraintValidatorContext context) {
-        // storeId로 가게가 존재하는지 확인하는 로직
-        return storeRepository.existsById(Long.valueOf(storeId));  // storeId는 Long으로 변환해서 사용
+
+        return storeRepository.existsById(Long.valueOf(storeId));
     }
 }
