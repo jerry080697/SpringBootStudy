@@ -5,7 +5,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.converter.UserMissionConverter;
 import umc.study.domain.UserMission;
+import umc.study.repository.MissionRepository.MissionRepository;
 import umc.study.repository.UserMissionRepository.UserMissionRepository;
+import umc.study.repository.UserRepository.UserRepository;
 import umc.study.web.dto.UserMissionRequestDTO;
 
 @Service
@@ -13,7 +15,8 @@ import umc.study.web.dto.UserMissionRequestDTO;
 public class UserMissionCommandServiceImpl implements UserMissionCommandService {
 
     private final UserMissionRepository userMissionRepository;
-
+    private final UserRepository userRepository;
+    private final MissionRepository missionRepository;
     @Override
     public UserMission joinStore(UserMissionRequestDTO.JoinUserMissionDto request) {
         return null;
@@ -27,4 +30,5 @@ public class UserMissionCommandServiceImpl implements UserMissionCommandService 
 
         return userMissionRepository.save(newUserMission);
     }
+
 }

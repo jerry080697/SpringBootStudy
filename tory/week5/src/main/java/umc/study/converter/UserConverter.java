@@ -1,6 +1,7 @@
 package umc.study.converter;
 
 import org.springframework.data.domain.Page;
+import umc.study.domain.Mission;
 import umc.study.domain.Review;
 import umc.study.domain.User;
 import umc.study.domain.enums.Gender;
@@ -61,5 +62,27 @@ public class UserConverter {
                 .userReviewList(UserReviewPreViewDTOList)
                 .build();
     }
+    public static UserResponseDTO.UserMisisonPreViewDTO missionPreViewDTO(Mission mission){
+        return UserResponseDTO.UserMisisonPreViewDTO.builder()
+                .ownerNickname(mission.getUser().getName())
+                .body(mission.getMissionDescription())
+                .build();
+    }
+    public static UserResponseDTO.UserMissionPreViewListDTO UserMisisonPreViewListDTO(Page<Mission> missionPage){
+        List<UserResponseDTO.UserMisisonPreViewDTO> UserMissionPreViewDTOList = missionPage.stream()
+                .map(UserConverter::missionPreViewDTO).collect(Collectors.toList());
+
+        return UserResponseDTO.UserMissionPreViewListDTO.builder()
+                .isLast(missionPage.isLast())
+                .isFirst(missionPage.isFirst())
+                .totalPage(missionPage.getTotalPages())
+                .totalElements(missionPage.getTotalElements())
+                .listSize(UserMissionPreViewDTOList.size())
+                .userMissionList(UserMissionPreViewDTOList)
+                .build();
+    }
+
+
+
 
 }

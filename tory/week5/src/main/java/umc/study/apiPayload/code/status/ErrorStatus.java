@@ -25,7 +25,10 @@ public enum ErrorStatus implements BaseErrorCode {
     // 예시,,,
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
     // For test
-    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트");
+    TEMP_EXCEPTION(HttpStatus.BAD_REQUEST, "TEMP4001", "이거는 테스트"),
+    ONGOING_MISSION_NOT_FOUND(HttpStatus.NOT_FOUND, "MISSION4002", "진행 중인 미션을 찾을 수 없습니다."),
+    INVALID_PAGE_REQUEST(HttpStatus.BAD_REQUEST, "PAGING4001", "페이지 번호는 1 이상의 정수여야 합니다.");
+
 
 
     private final HttpStatus httpStatus;
