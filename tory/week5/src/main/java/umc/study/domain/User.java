@@ -7,6 +7,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import umc.study.domain.enums.Gender;
+import umc.study.domain.enums.Role;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -47,7 +48,18 @@ public class User {
     @LastModifiedDate
     private LocalDateTime updatedAt;
 
+    @Column(nullable = false, unique = true)
+    private String email;
 
+    @Column(nullable = false)
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
+
+    public void encodePassword(String password) {
+        this.password = password;
+    }
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)
     private List<Review> reviewList=new ArrayList<>();
     @OneToMany(mappedBy = "user",cascade=CascadeType.ALL)

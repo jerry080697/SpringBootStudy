@@ -1,6 +1,7 @@
 package umc.study.service.UserService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import umc.study.converter.UserConverter;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 public class UserCommandServiceImpl implements UserCommandService{
 
     private final UserRepository userRepository;
-
+    private final PasswordEncoder passwordEncoder;
     private final PreferFoodCategoryRepository foodCategoryRepository;
 
     @Override
@@ -27,11 +28,13 @@ public class UserCommandServiceImpl implements UserCommandService{
         User newUser = UserConverter.toUser(request);
         newUser.setCreatedAt(LocalDateTime.now());
         newUser.setUpdatedAt(LocalDateTime.now());
+        newUser.encodePassword(passwordEncoder.encode(request.getPassword()));
 
 
 
         return userRepository.save(newUser);
     }
+
 
     public User findById(Integer userId) {
         return userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));

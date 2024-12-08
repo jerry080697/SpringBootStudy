@@ -37,8 +37,11 @@ public class UserConverter {
         return User.builder()
                 .address(request.getAddress())
                 //.specAddress(request.getSpecAddress())
+                .email(request.getEmail())   // 추가된 코드
+                .password(request.getPassword())   // 추가된 코드
                 .gender(gender)
                 .name(request.getName())
+                .role(request.getRole())   // 추가된 코드
                 .preferFoodCategory(request.getPreferCategory().toString())
                 .build();
     }
